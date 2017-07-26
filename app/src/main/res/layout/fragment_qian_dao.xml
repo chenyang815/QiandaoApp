@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.edu.glut.glutqiandao.QianDaoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:text="签到"
+        android:id="@+id/qiandaobt"
+        android:layout_gravity="center"
+        android:layout_width="113dp"
+        android:layout_height="59dp" />
+
+</FrameLayout>

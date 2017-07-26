@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">GlutQianDao</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">请输入学号</string>
+    <string name="prompt_password">请输入密码</string>
+    <string name="action_sign_in">注册</string>
+    <string name="action_sign_in_short">登录</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_main">桂工签到</string>
+    <string name="title_home">签到</string>
+    <string name="title_dashboard">查询</string>
+    <string name="title_notifications">个人信息</string>
+    <string name="jw_import">从教务处导入信息</string>
+    <string name="aa">注册信息</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
