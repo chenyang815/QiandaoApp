@@ -28,7 +28,7 @@ public class ImportActivity extends AppCompatActivity {
 
     static String url="http://202.193.80.58:81/academic/student/studentinfo/studentInfoModifyIndex.do?frombase=0&wantTag=0&groupId=&moduleId=2060";
     static String url3="http://202.193.80.58:81/academic/student/currcourse/currcourse.jsdo?groupId=&moduleId=2000";
-    static String postUrl="http://192.168.43.170:8080/register.jsp";
+    static String postUrl="http://192.168.43.170:8080/qiandao/sturegister";
     static String cookie="";
     static String userid="";
     static String name="";
@@ -90,13 +90,13 @@ public class ImportActivity extends AppCompatActivity {
 
         boolean check=false;
         Map<String,String> postData=new HashMap<>();
-        postData.put("sid",userid);
-        postData.put("sname",name);
-        postData.put("spasswd",passwd.getText().toString());
-        postData.put("scollege",college);
-        postData.put("sprofession",marjor);
-        postData.put("sclass",classes);
-        postData.put("sphone",phone.getText().toString());
+        postData.put("student.sid",userid);
+        postData.put("student.sname",name);
+        postData.put("student.spassword",passwd.getText().toString());
+        postData.put("student.scollege",college);
+        postData.put("student.sprofession",marjor);
+        postData.put("student.sclass",classes);
+        postData.put("student.sphone",phone.getText().toString());
 
         String courseids="";
         String courses="";
@@ -151,7 +151,7 @@ public class ImportActivity extends AppCompatActivity {
              courname=new ArrayList<>();
 
             len=document2.getElementsByTag("table").get(3).select(".infolist_common").size();
-            System.out.println("len is "+len);
+
 
             for (int i=0;i<len;i++){
 

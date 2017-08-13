@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity  {
     private Button registerbt,loginbt;
     private static boolean state;
     private static Handler handler = new Handler();
-    private static String url="http://192.168.43.170:8080/login.jsp";
+    private static String url="http://192.168.43.170:8080/qiandao/slogin";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +84,9 @@ public class LoginThread extends Thread implements Runnable{
                     .data("spasswd",mPasswordView.getText().toString())
                     .method(Connection.Method.POST).execute();
 
+            //Log.d("code","code is "+rs.statusCode());
             if (rs.body().contains("true")){
+
                    state=true;
             }else {
                 state=false;
