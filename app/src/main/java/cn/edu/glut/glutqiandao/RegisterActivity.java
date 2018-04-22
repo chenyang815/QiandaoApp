@@ -23,13 +23,13 @@ import java.net.URL;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    static String url1="http://202.193.80.58:81/academic/common/security/login.jsp";
-    static String url2="http://202.193.80.58:81/academic/getCaptcha.do";
-    EditText username,passwd,code;
-    ImageView codepic;
-    Button loginbt;
+    private static String url1="http://202.193.80.58:81/academic/common/security/login.jsp";
+    private static String url2="http://202.193.80.58:81/academic/getCaptcha.do";
+    private EditText username,passwd,code;
+    private ImageView codepic;
+    private Button loginbt;
     static String cookie="";
-    Bitmap bitmap=null;
+    private Bitmap bitmap=null;
 
     private static Handler handler = new Handler();
     // private static Handler handler2 = new Handler();
@@ -43,6 +43,15 @@ public class RegisterActivity extends AppCompatActivity {
         code=(EditText)findViewById(R.id.code);
         codepic= (ImageView) findViewById(R.id.codepic);
         loginbt= (Button) findViewById(R.id.login2);
+
+        //点击刷新验证码
+        codepic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new Thread(new MyThread3()).start();
+            }
+        });
         loginbt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,9 +84,11 @@ public class RegisterActivity extends AppCompatActivity {
     public  boolean sumbitForm(){
         try {
             System.out.println(username.getText().toString());
-            Jsoup.connect("http://202.193.80.58:81/academic/j_acegi_security_check")
+           Connection.Response rs= Jsoup.connect("http://202.193.80.58:81/academic/j_acegi_security_check")
                     .data("j_username",username.getText().toString()).data("j_password",passwd.getText().toString()).data("j_captcha",code.getText().toString())
                     .data("groupId","").cookie("JSESSIONID",cookie).method(Connection.Method.POST).execute();
+            cookie=rs.cookie("JSESSIONID");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -146,5 +157,28 @@ public class RegisterActivity extends AppCompatActivity {
             });
         }
 
+    }
+
+    public class MyThread3 extends Thread implements Runnable{
+        public void run(){
+            //cookie=getCookie(url1);//获取cookie
+
+            //System.out.println(cookie);
+
+            try {
+                byte[] data = getImage(url2);
+                bitmap= BitmapFactory.decodeByteArray(data, 0, data.length);  //生成位图
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        codepic.setImageBitmap(bitmap);   //显示图片
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

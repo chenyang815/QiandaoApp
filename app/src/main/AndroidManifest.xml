@@ -17,7 +17,19 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name=".MApplication"
@@ -27,27 +39,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="3675227c7b9d6b48a272ac80ae23ea87" />
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
-            >
+            android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
-            android:label="@string/jw_import"
-            />
-        <activity android:name=".ImportActivity"
-            android:label="@string/aa"
-            />
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/jw_import" />
+        <activity
+            android:name=".ImportActivity"
+            android:label="@string/aa" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".CourseActivity"></activity>
+        <activity android:name=".CourseActivity" />
+        <activity android:name=".location.LocationTestActivity" />
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true" />
+
+        <activity
+            android:name=".quiz.AnswerQuizActivity"
+            android:label="@string/title_activity_answer_quiz"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

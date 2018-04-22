@@ -12,6 +12,8 @@ import android.widget.Button;
 
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 
+import cn.edu.glut.glutqiandao.location.LocationTestActivity;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +34,7 @@ public class QianDaoFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Button qiandaobt;
+    private Button locatebt;
 
     private OnFragmentInteractionListener mListener;
 
@@ -74,6 +77,7 @@ public class QianDaoFragment extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_qian_dao, container, false);
         qiandaobt= (Button) view.findViewById(R.id.qiandaobt);
+        locatebt= (Button) view.findViewById(R.id.location);
 
         qiandaobt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +86,17 @@ public class QianDaoFragment extends Fragment {
                 MainActivity mainActivity=(MainActivity)getActivity();
                 Intent intent = new Intent(mainActivity.getApplication(), CaptureActivity.class);
                 mainActivity.startActivityForResult(intent,REQUEST_CODE);
+            }
+        });
+
+
+        locatebt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity=(MainActivity)getActivity();
+                Intent intent=new Intent(mainActivity.getApplication(), LocationTestActivity.class);
+                mainActivity.startActivity(intent);
+
             }
         });
 

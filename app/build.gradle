@@ -26,12 +26,15 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':lib-zxing')
+    compile files('libs/AMap_Location_V3.8.0_20180201.jar')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.jsoup:jsoup:1.10.3'
     compile 'com.android.support:support-vector-drawable:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
-    testCompile 'junit:junit:4.12'
     compile 'com.jayway.jsonpath:json-path:2.4.0'
+    compile 'com.squareup.okhttp3:okhttp:3.9.1'
+    compile 'com.google.code.gson:gson:2.2.4'
+    testCompile 'junit:junit:4.12'
 }

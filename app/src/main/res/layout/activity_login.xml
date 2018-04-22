@@ -26,6 +26,7 @@
 
         <LinearLayout
             android:id="@+id/email_login_form"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -59,9 +60,18 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/rememberpasswd"
+                android:text="记住密码"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+
+    >
+
             <Button
                 android:id="@+id/register_button"
                 style="?android:textAppearanceSmall"
@@ -81,6 +91,13 @@
                 android:text="@string/action_sign_in_short"
                 android:textStyle="bold" />
 </LinearLayout>
+            <Button
+                android:id="@+id/locationtest"
+                android:text="定位测试"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
+
+
 </LinearLayout>

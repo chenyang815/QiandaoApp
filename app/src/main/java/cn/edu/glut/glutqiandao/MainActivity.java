@@ -19,8 +19,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.jayway.jsonpath.JsonPath;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
+
+import cn.edu.glut.glutqiandao.quiz.AnswerQuizActivity;
 
 public class MainActivity extends AppCompatActivity implements QianDaoFragment.OnFragmentInteractionListener,
         QueryFragment.OnFragmentInteractionListener,ProfileFragment.OnFragmentInteractionListener,
@@ -125,9 +132,27 @@ public class MainActivity extends AppCompatActivity implements QianDaoFragment.O
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
                     Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//显示解析
-                    Intent intent = new Intent(MainActivity.this, CourseActivity.class);
-                    intent.putExtra("data", result);
-                    startActivity(intent);
+                    JsonParser parser=new JsonParser();
+                    JsonElement element=parser.parse(result);
+
+
+                    JsonObject jsonObj = element.getAsJsonObject();
+                    String type=jsonObj.get("type").getAsString();
+                    //0为考勤,1为答题
+                    if (type.equals("0")){
+                        Intent intent = new Intent(MainActivity.this, CourseActivity.class);
+                        intent.putExtra("data", result);
+                        startActivity(intent);
+
+                    }else if (type.equals("1")){
+                        Intent intent = new Intent(MainActivity.this, AnswerQuizActivity.class);
+                        intent.putExtra("data", result);
+                        startActivity(intent);
+                    }
+
+
+
+
 
 
                 } else if

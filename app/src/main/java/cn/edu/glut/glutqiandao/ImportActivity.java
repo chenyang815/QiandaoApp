@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import net.minidev.json.JSONObject;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,11 +27,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class ImportActivity extends AppCompatActivity {
 
     static String url="http://202.193.80.58:81/academic/student/studentinfo/studentInfoModifyIndex.do?frombase=0&wantTag=0&groupId=&moduleId=2060";
     static String url3="http://202.193.80.58:81/academic/student/currcourse/currcourse.jsdo?groupId=&moduleId=2000";
-    static String postUrl="http://192.168.43.170:8080/register.jsp";
+    static String postUrl="http://192.168.0.106:8080/sturegister";
     static String cookie="";
     static String userid="";
     static String name="";
@@ -40,7 +50,7 @@ public class ImportActivity extends AppCompatActivity {
     static List<String> courseid;
     static List<String> courname;
 
-    TextView useridTextView,nameTextView,collegeTextView,marjorTextView,classesTextView
+    private TextView useridTextView,nameTextView,collegeTextView,marjorTextView,classesTextView
             ,coursenumberTextView;
     private EditText passwd,phone;
 
@@ -86,17 +96,56 @@ public class ImportActivity extends AppCompatActivity {
         //Toast.makeText(ImportActivity.this,"正在解析.......",Toast.LENGTH_LONG).show();
     }
 
+    private boolean submitProfie() throws IOException {
+
+        Map<String,String> postData=new HashMap<>();
+        postData.put("student.id",userid);
+        postData.put("student.name",name);
+        postData.put("student.passwd",passwd.getText().toString());
+        postData.put("student.college",college);
+        postData.put("student.profession",marjor);
+        postData.put("student.classes",classes);
+        postData.put("student.tel",phone.getText().toString());
+
+        String courseids="";
+        String courses="";
+        for (String id:
+                courseid) {
+            courseids=courseids+" "+id;
+        }
+
+        for (String course:
+                courname){
+            courses=courses+" "+course;
+        }
+        postData.put("ids",courseids);
+        postData.put("courses",courses);
+
+
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        OkHttpClient client=new OkHttpClient();
+        RequestBody requestBody=RequestBody.create(JSON, JSONObject.toJSONString(postData));
+        Request request = new Request.Builder().url(postUrl).post(requestBody).build();
+        Response response=client.newCall(request).execute();
+        if (response.body().toString().contains("true")){
+            return true;
+        }else {
+            return  false;
+        }
+
+    }
+
     private boolean submitData(){
 
         boolean check=false;
         Map<String,String> postData=new HashMap<>();
-        postData.put("sid",userid);
-        postData.put("sname",name);
-        postData.put("spasswd",passwd.getText().toString());
-        postData.put("scollege",college);
-        postData.put("sprofession",marjor);
-        postData.put("sclass",classes);
-        postData.put("sphone",phone.getText().toString());
+        postData.put("student.id",userid);
+        postData.put("student.name",name);
+        postData.put("student.passwd",passwd.getText().toString());
+        postData.put("student.college",college);
+        postData.put("student.profession",marjor);
+        postData.put("student.classes",classes);
+        postData.put("student.tel",phone.getText().toString());
 
         String courseids="";
         String courses="";
@@ -115,7 +164,9 @@ public class ImportActivity extends AppCompatActivity {
         Connection.Response rs=null;
         try {
             rs=Jsoup.connect(postUrl).data(postData).method(Connection.Method.POST).execute();
+            System.out.println(rs.body());
             if (rs.body().contains("true")){
+
                 check=true;
 
             }
@@ -192,11 +243,11 @@ public class ImportActivity extends AppCompatActivity {
     public class RegisterThread extends Thread implements Runnable{
         @Override
         public void run() {
-            if (submitData()){
+                if (submitData()){
 
-                state=true;
+                    state=true;
+
             }
-
             handler.post(new Runnable() {
                 @Override
                 public void run() {
