@@ -65,9 +65,7 @@
         <activity android:name=".CourseActivity" />
         <activity android:name=".location.LocationTestActivity" />
 
-        <service
-            android:name="com.baidu.location.f"
-            android:enabled="true" />
+
 
         <activity
             android:name=".quiz.AnswerQuizActivity"

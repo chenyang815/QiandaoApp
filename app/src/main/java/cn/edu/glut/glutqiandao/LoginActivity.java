@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity  {
     private Button registerbt,loginbt;
     private static boolean state;
     private static Handler handler = new Handler();
-    private static String url="http://192.168.0.106:8080/slogin";
+    private static String url="http://192.168.31.135:8080/slogin";
     static ProgressDialog progressDialog=null;
     private Button locatestBt;
     private boolean isremeberpasswd;
@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity  {
             SharedPreferences sp=getSharedPreferences("data",MODE_PRIVATE);
             mStusid.setText(sp.getString("sid",""));
             mPasswordView.setText(sp.getString("spasswd",""));
-
+            MApplication.setSid(sp.getString("sid",""));
             new Thread(new LoginThread()).start();
 
         }
@@ -107,6 +107,7 @@ public class LoginActivity extends AppCompatActivity  {
                     SharedPreferences.Editor editor=sp.edit();
                     editor.putString("sid",mStusid.getText().toString());
                     editor.putString("spasswd",mPasswordView.getText().toString());
+                    MApplication.setSid(mStusid.getText().toString());
                     editor.commit();//保存密码
                 }
 

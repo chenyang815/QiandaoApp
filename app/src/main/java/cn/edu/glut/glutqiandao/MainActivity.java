@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements QianDaoFragment.O
 
                     JsonObject jsonObj = element.getAsJsonObject();
                     String type=jsonObj.get("type").getAsString();
-                    //0为考勤,1为答题
+                    //0为考勤,1为答题,2为问卷
                     if (type.equals("0")){
                         Intent intent = new Intent(MainActivity.this, CourseActivity.class);
                         intent.putExtra("data", result);
@@ -148,6 +148,11 @@ public class MainActivity extends AppCompatActivity implements QianDaoFragment.O
                         Intent intent = new Intent(MainActivity.this, AnswerQuizActivity.class);
                         intent.putExtra("data", result);
                         startActivity(intent);
+
+                    }
+
+                    else if(type.equals(2)){
+
                     }
 
 

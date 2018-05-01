@@ -38,7 +38,7 @@ public class ImportActivity extends AppCompatActivity {
 
     static String url="http://202.193.80.58:81/academic/student/studentinfo/studentInfoModifyIndex.do?frombase=0&wantTag=0&groupId=&moduleId=2060";
     static String url3="http://202.193.80.58:81/academic/student/currcourse/currcourse.jsdo?groupId=&moduleId=2000";
-    static String postUrl="http://192.168.0.106:8080/sturegister";
+    static String postUrl="http://192.168.31.135:8080/sturegister";
     static String cookie="";
     static String userid="";
     static String name="";
