@@ -27,6 +27,7 @@ import com.jayway.jsonpath.JsonPath;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
+import cn.edu.glut.glutqiandao.questionnaire.AnswerQuestionnaireActivity;
 import cn.edu.glut.glutqiandao.quiz.AnswerQuizActivity;
 
 public class MainActivity extends AppCompatActivity implements QianDaoFragment.OnFragmentInteractionListener,
@@ -151,8 +152,11 @@ public class MainActivity extends AppCompatActivity implements QianDaoFragment.O
 
                     }
 
-                    else if(type.equals(2)){
+                    else if(type.equals("2")){
 
+                        Intent intent = new Intent(MainActivity.this, AnswerQuestionnaireActivity.class);
+                        intent.putExtra("data", result);
+                        startActivity(intent);
                     }
 
 

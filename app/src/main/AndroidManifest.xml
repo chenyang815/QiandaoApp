@@ -64,13 +64,11 @@
             android:label="@string/title_activity_main" />
         <activity android:name=".CourseActivity" />
         <activity android:name=".location.LocationTestActivity" />
-
-
-
         <activity
             android:name=".quiz.AnswerQuizActivity"
             android:label="@string/title_activity_answer_quiz"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".questionnaire.AnswerQuestionnaireActivity"></activity>
     </application>
 
 </manifest>
