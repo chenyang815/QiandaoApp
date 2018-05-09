@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import com.allen.library.SuperTextView;
 
 
 /**
@@ -28,7 +28,7 @@ public class ProfileFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    TextView useridTextView,nameTextView,collegeTextView,marjorTextView,classesTextView
+    SuperTextView useridTextView,nameTextView,collegeTextView,marjorTextView,classesTextView
             ,phoneTextView;
 
     private OnFragmentInteractionListener mListener;
@@ -69,21 +69,23 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_profile, container, false);
-        useridTextView= (TextView) view.findViewById(R.id.userid);
-        nameTextView= (TextView) view.findViewById(R.id.name);
-        collegeTextView= (TextView) view.findViewById(R.id.college);
-        marjorTextView= (TextView) view.findViewById(R.id.major);
-        classesTextView= (TextView) view.findViewById(R.id.classes);
-        phoneTextView= (TextView) view.findViewById(R.id.course_number);
+
+
+        useridTextView= (SuperTextView) view.findViewById(R.id.userid);
+        nameTextView= (SuperTextView) view.findViewById(R.id.name);
+        collegeTextView= (SuperTextView) view.findViewById(R.id.college);
+        //marjorTextView= (SuperTextView) view.findViewById(R.id.major);
+        classesTextView= (SuperTextView) view.findViewById(R.id.classes);
+        phoneTextView= (SuperTextView) view.findViewById(R.id.course_number);
+
 
         SharedPreferences sp=getActivity().getSharedPreferences("profile",Context.MODE_PRIVATE);
-
-        useridTextView.setText(sp.getString("sid","null"));
-        nameTextView.setText(sp.getString("sname","null"));
-        collegeTextView.setText(sp.getString("scollege","null"));
-        marjorTextView.setText(sp.getString("sprofession","null"));
-        classesTextView.setText(sp.getString("sclass","null"));
-        phoneTextView.setText(sp.getString("sphone","null"));
+        useridTextView.setRightString(sp.getString("id","null"));
+        nameTextView.setRightString(sp.getString("name","null"));
+        collegeTextView.setRightString(sp.getString("college","null"));
+        //marjorTextView.setRightString(sp.getString("sprofession","null"));
+        classesTextView.setRightString(sp.getString("classes","null"));
+        phoneTextView.setRightString(sp.getString("tel","null"));
 
         return view;
     }

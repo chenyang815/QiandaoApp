@@ -13,8 +13,8 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_main">桂工签到</string>
-    <string name="title_home">签到</string>
+    <string name="title_activity_main">桂工师生互动系统</string>
+    <string name="title_home">扫码</string>
     <string name="title_dashboard">查询</string>
     <string name="title_notifications">个人信息</string>
     <string name="jw_import">从教务处导入信息</string>

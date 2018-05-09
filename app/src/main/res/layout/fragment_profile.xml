@@ -2,88 +2,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
     tools:context="cn.edu.glut.glutqiandao.ProfileFragment">
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="学号:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/userid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="姓名:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
+
+            <com.allen.library.SuperTextView
                 android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="学院:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/college"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="专业:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/major"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="班级:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/classes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="姓名"
+                stv:sRightTextString=""  />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="手机号码:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
+
+
+            <com.allen.library.SuperTextView
+                android:id="@+id/userid"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="学号"
+                stv:sRightTextString=""  />
+
+            <com.allen.library.SuperTextView
+                android:id="@+id/college"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="学院"
+                stv:sRightTextString=""  />
+
+
+
+            <com.allen.library.SuperTextView
+                android:id="@+id/classes"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="专业班级"
+                stv:sRightTextString=""  />
+
+            <com.allen.library.SuperTextView
                 android:id="@+id/course_number"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="手机号码"
+                stv:sRightTextString=""  />
+
+
+
+            <com.allen.library.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sDividerLineType="bottom"
+                stv:sLeftTextString="修改资料"
+                stv:sRightIconRes="@drawable/arrow_right_red" />
+
+            <com.allen.library.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sDividerLineType="bottom"
+                stv:sLeftTextString="设置中心"
+                stv:sRightIconRes="@drawable/arrow_right_red" />
+
+
+            <com.allen.library.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+                stv:sDividerLineType="both"
+                stv:sLeftTextString="意见反馈"
+                stv:sRightIconRes="@drawable/arrow_right_red" />
+
+            <com.allen.library.SuperTextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sDividerLineType="both"
+                stv:sLeftTextString="关于APP"
+                stv:sRightIconRes="@drawable/arrow_right_red" />
+
+            <Button
+                android:id="@+id/quitbt"
+                android:text="退出登录"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
 
 </FrameLayout>

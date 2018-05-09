@@ -6,7 +6,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <Button
-        android:text="签到"
+        android:text="扫码"
         android:id="@+id/qiandaobt"
         android:layout_gravity="center"
         android:layout_width="113dp"

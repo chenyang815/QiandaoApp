@@ -17,12 +17,17 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.ReadContext;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
 
 import cn.edu.glut.glutqiandao.location.LocationTestActivity;
+import cn.edu.glut.glutqiandao.model.Student;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -42,8 +47,9 @@ public class LoginActivity extends AppCompatActivity  {
     private static boolean state;
     private static Handler handler = new Handler();
     private static String url="http://192.168.31.135:8080/slogin";
+    private static String url2="http://192.168.31.135:8080/getStudentInfoAction";
     static ProgressDialog progressDialog=null;
-    private Button locatestBt;
+
     private boolean isremeberpasswd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,7 @@ public class LoginActivity extends AppCompatActivity  {
         mPasswordView = (EditText) findViewById(R.id.password);
         registerbt=(Button)findViewById(R.id.register_button);
         loginbt= (Button) findViewById(R.id.sign_in_button);
-        locatestBt= (Button) findViewById(R.id.locationtest);
+
         rememberpasswd= (CheckBox) findViewById(R.id.rememberpasswd);
 
         rememberpasswd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -88,14 +94,6 @@ public class LoginActivity extends AppCompatActivity  {
             }
         });
 
-        locatestBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(LoginActivity.this, LocationTestActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         loginbt.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +131,6 @@ public class LoginThread extends Thread implements Runnable{
 
         Request request=new Request.Builder().post(requestBody).url(url).build();
         Response response=client.newCall(request).execute();
-       // System.out.println(response.body().string());
         String rs=response.body().string();
         if (rs.contains("true")){
 
@@ -146,12 +143,38 @@ public class LoginThread extends Thread implements Runnable{
 
     }
 
+    //保存学生资料
+    private void setProfile(String sid) throws IOException{
+        OkHttpClient client = new OkHttpClient();
+
+        RequestBody requestBody =new FormBody.Builder()
+                .add("sid",mStusid.getText().toString())
+                .build();
+
+        Request request=new Request.Builder().post(requestBody).url(url2).build();
+        Response response=client.newCall(request).execute();
+        String rs=response.body().string();
+        ReadContext context = JsonPath.parse(rs);
+        String objstr=context.read("$.studentInfo").toString();
+        Gson gson=new Gson();
+        Student student=gson.fromJson(objstr,Student.class);
+        SharedPreferences sp=getSharedPreferences("profile",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor=sp.edit();
+        editor.putString("id",student.getId());
+        editor.putString("name",student.getName());
+        editor.putString("college",student.getCollege());
+        editor.putString("classes",student.getClasses());
+        editor.putString("tel",student.getTel());
+        editor.commit();
+    }
+
     @Override
     public void run() {
 
         try {
             if (login()){
                 state=true;
+                setProfile(mStusid.getText().toString());
             }
 
 

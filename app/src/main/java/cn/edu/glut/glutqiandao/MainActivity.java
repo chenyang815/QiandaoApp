@@ -8,23 +8,15 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.jayway.jsonpath.JsonPath;
-import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 import cn.edu.glut.glutqiandao.questionnaire.AnswerQuestionnaireActivity;
@@ -141,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements QianDaoFragment.O
                     String type=jsonObj.get("type").getAsString();
                     //0为考勤,1为答题,2为问卷
                     if (type.equals("0")){
-                        Intent intent = new Intent(MainActivity.this, CourseActivity.class);
+                        Intent intent = new Intent(MainActivity.this, SignActivity.class);
                         intent.putExtra("data", result);
                         startActivity(intent);
 

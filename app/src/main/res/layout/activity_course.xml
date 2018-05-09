@@ -4,122 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cn.edu.glut.glutqiandao.CourseActivity">
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp">
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
+    tools:context="cn.edu.glut.glutqiandao.SignActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="教师："
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="课程："
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="日期：" />
+            <com.allen.library.SuperTextView
+                android:id="@+id/tname"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="教师"
+                  />
 
-            <TextView
-                android:id="@+id/sign_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
+            <com.allen.library.SuperTextView
+                android:id="@+id/cname"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="课程"
+                 />
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="节数：" />
+            <com.allen.library.SuperTextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="日期"
+                 />
 
-            <TextView
+            <com.allen.library.SuperTextView
                 android:id="@+id/section"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="节数"
+                  />
 
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="教室：" />
-
-            <TextView
+            <com.allen.library.SuperTextView
                 android:id="@+id/classroom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" />
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="教室"
+                  />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="地址：" />
-
-            <TextView
+            <com.allen.library.SuperTextView
                 android:id="@+id/address"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="地址"
+                stv:sCenterTextSize="8sp"
+                  />
+            <com.allen.library.SuperTextView
+                android:id="@+id/coordinate"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="坐标"
+                  />
+
+            <com.allen.library.SuperTextView
+                android:id="@+id/isfingeridfiy"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                stv:sLeftTextString="指纹识别"
+                  />
+
+            <com.allen.library.SuperButton
+                android:id="@+id/get_location"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="" />
+                android:layout_margin="5dp"
+                android:text="重新获取定位"
+                stv:sUseSelector="true"
+                stv:sCornersRadius="10dp"
+                stv:sSelectorNormalColor="@color/locatebt"
+                stv:sStrokeWidth="0.2dp"
+                stv:sSelectorPressedColor="@color/grgray"
+
+                />
+
+
+
+            <com.allen.library.SuperButton
+                android:id="@+id/buttonqq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="签到"
+                stv:sCornersRadius="10dp"
+                stv:sSelectorNormalColor="@color/btnqq"
+                stv:sStrokeWidth="0.2dp"
+                stv:sSelectorPressedColor="@color/grgray"
+                stv:sUseSelector="true"
+                />
+
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/get_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="获取定位" />
-
-        <Button
-            android:id="@+id/buttonqq"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="签到" />
-    </LinearLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -7,6 +7,7 @@ package cn.edu.glut.glutqiandao.model;
  */
 
 public class Code {
+
     private String tid;
     private String tname;
     private String cid;
@@ -19,6 +20,8 @@ public class Code {
     private String signdate;
     private String signtime;
     private String sid;
+
+
 
     public String getSid() {
         return sid;
