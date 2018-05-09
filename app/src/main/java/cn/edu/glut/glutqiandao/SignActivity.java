@@ -22,6 +22,8 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.google.gson.Gson;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.ReadContext;
 import com.wei.android.lib.fingerprintidentify.FingerprintIdentify;
 import com.wei.android.lib.fingerprintidentify.base.BaseFingerprint;
 
@@ -158,7 +160,7 @@ public class SignActivity extends AppCompatActivity {
                 }
 
                 else {
-                    Toast.makeText(SignActivity.this, "坐标数据为空,定位失败,请重新定位", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignActivity.this, "坐标数据为空,定位失败,请重新定位", Toast.LENGTH_LONG).show();
 
                 }
 
@@ -171,6 +173,7 @@ public class SignActivity extends AppCompatActivity {
         getLocationBt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(SignActivity.this,"正在重新定位......",Toast.LENGTH_SHORT).show();
                 requestLocation();
             }
         });
@@ -210,6 +213,8 @@ public class SignActivity extends AppCompatActivity {
                 //设置场景模式后最好调用一次stop，再调用start以保证场景模式生效
                 mLocationClient.stopLocation();
                 mLocationClient.startLocation();
+                Toast.makeText(SignActivity.this,"正在定位......",Toast.LENGTH_SHORT).show();
+
             }
         }
 
@@ -217,13 +222,7 @@ public class SignActivity extends AppCompatActivity {
 
     private void requestLocation() {
 
-
-
         mLocationClient.stopLocation();
-        //mLocationClient.onDestroy();
-        //mLocationClient = new AMapLocationClient(getApplicationContext());
-        resetOption();
-        //mLocationClient.setLocationOption(mLocationOption);
         mLocationClient.startLocation();
 
     }
@@ -255,16 +254,29 @@ public class SignActivity extends AppCompatActivity {
 
         @Override
         public void onLocationChanged(AMapLocation aMapLocation) {
-            String locationStr=aMapLocation.getAddress();
 
-            //locationStr.append("精度信息：").append(aMapLocation.getAccuracy()).append("\n");
-            System.out.println("正在定位......."+locationStr);
-            System.out.println(locationStr);
-            address_textView.setCenterString(locationStr);
-            address=locationStr;
-            coordinate=aMapLocation.getLongitude()+"-"+aMapLocation.getLatitude();
-            String showcoordinate="经度："+aMapLocation.getLongitude()+" 纬度："+aMapLocation.getLatitude();
-            coordinate_TextView.setCenterString(showcoordinate);
+            if (aMapLocation.getErrorCode() == 0) {
+//可在其中解析amapLocation获取相应内容。
+
+                String locationStr=aMapLocation.getAddress();
+
+                //locationStr.append("精度信息：").append(aMapLocation.getAccuracy()).append("\n");
+                System.out.println("正在定位......."+locationStr);
+                System.out.println(locationStr);
+                address_textView.setCenterString(locationStr);
+                address=locationStr;
+                coordinate=aMapLocation.getLongitude()+"-"+aMapLocation.getLatitude();
+                String showcoordinate="经度："+aMapLocation.getLongitude()+" 纬度："+aMapLocation.getLatitude();
+                coordinate_TextView.setCenterString(showcoordinate);
+                Toast.makeText(SignActivity.this,"定位成功",Toast.LENGTH_SHORT).show();
+
+            }else {
+                //定位失败时，可通过ErrCode（错误码）信息来确定失败的原因，errInfo是错误信息，详见错误码表。
+                Log.e("AmapError","location Error, ErrCode:"
+                        + aMapLocation.getErrorCode() + ", errInfo:"
+                        + aMapLocation.getErrorInfo());
+            }
+
             //positonTextView.setText(locationStr);
 
         }
@@ -276,6 +288,7 @@ public class SignActivity extends AppCompatActivity {
     }
 
    public class SignThread extends Thread implements Runnable{
+       String msg="";
         @Override
         public void run() {
 
@@ -292,11 +305,19 @@ public class SignActivity extends AppCompatActivity {
                 Response response=client.newCall(request).execute();
                 String responsestr=response.body().string();
                 System.out.println(responsestr);
-
+                ReadContext context = JsonPath.parse(responsestr);
+                msg =context.read("$.msg");
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(SignActivity.this,msg,Toast.LENGTH_LONG).show();
+                }
+            });
 
         }
     }
