@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "cn.edu.glut.glutqiandao"
         minSdkVersion 15
@@ -21,23 +21,30 @@ android {
 }
 
 dependencies {
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v13'
+    }
+
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile project(':lib-zxing')
     compile project(':FingerprintIdentifyLib')
-    compile 'com.wei.android.lib:fingerprintidentify:1.2.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.chanven.lib:cptr:1.1.0'
     compile files('libs/AMap_Location_V3.8.0_20180201.jar')
     compile 'com.github.lygttpod:SuperTextView:2.1.7'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.0.0'
+    compile 'com.android.support:design:26.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'org.jsoup:jsoup:1.10.3'
-    compile 'com.android.support:support-vector-drawable:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-vector-drawable:26.0.0'
+    compile 'com.android.support:support-v4:26.0.0'
     compile 'com.jayway.jsonpath:json-path:2.4.0'
     compile 'com.squareup.okhttp3:okhttp:3.9.1'
     compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.borax12.materialdaterangepicker:library:1.9'
     testCompile 'junit:junit:4.12'
 }

@@ -5,7 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/FingerprintIdentifyLib/FingerprintIdentifyLib.iml" filepath="$PROJECT_DIR$/FingerprintIdentifyLib/FingerprintIdentifyLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/QiandaoApp.iml" filepath="$PROJECT_DIR$/QiandaoApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cptr/cptr.iml" filepath="$PROJECT_DIR$/cptr/cptr.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib-zxing/lib-zxing.iml" filepath="$PROJECT_DIR$/lib-zxing/lib-zxing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
   </component>
 </project>

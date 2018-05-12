@@ -1,1 +1,1 @@
-include ':app', ':lib-zxing',':FingerprintIdentifyLib'
+include ':app', ':lib-zxing',':FingerprintIdentifyLib',':cptr',':library'

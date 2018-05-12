@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
+    >
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/cname"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        stv:sDividerLineType="both"
+        stv:sLeftTextString="Java程序设计"
+        stv:sRightIconRes="@drawable/arrow_right_red" />
+
+</LinearLayout>
