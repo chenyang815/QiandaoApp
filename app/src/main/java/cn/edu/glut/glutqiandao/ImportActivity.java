@@ -19,6 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.allen.library.SuperButton;
+import com.allen.library.SuperTextView;
+
 import net.minidev.json.JSONObject;
 
 import org.jsoup.Connection;
@@ -55,10 +58,10 @@ public class ImportActivity extends AppCompatActivity {
     static List<String> courseid;
     static List<String> courname;
 
-    private TextView useridTextView, nameTextView, collegeTextView, marjorTextView, classesTextView, coursenumberTextView, phoneimeiTextView;
+    private SuperTextView useridTextView, nameTextView, collegeTextView, marjorTextView, classesTextView, coursenumberTextView, phoneimeiTextView;
     private EditText passwd, phone;
 
-    private Button registerbt;
+    private SuperButton registerbt;
     static ProgressDialog progressDialog = null;
     private static Handler handler = new Handler();
 
@@ -66,18 +69,18 @@ public class ImportActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import);
-        useridTextView = (TextView) findViewById(R.id.userid);
-        nameTextView = (TextView) findViewById(R.id.name);
-        collegeTextView = (TextView) findViewById(R.id.college);
-        marjorTextView = (TextView) findViewById(R.id.major);
-        classesTextView = (TextView) findViewById(R.id.classes);
-        phoneimeiTextView = (TextView) findViewById(R.id.phoneimei);
+        useridTextView =  findViewById(R.id.userid);
+        nameTextView =  findViewById(R.id.name);
+        collegeTextView =  findViewById(R.id.college);
+        marjorTextView =  findViewById(R.id.major);
+        classesTextView =  findViewById(R.id.classes);
+        phoneimeiTextView =  findViewById(R.id.phoneimei);
 
-        coursenumberTextView = (TextView) findViewById(R.id.course_number);
+        coursenumberTextView =  findViewById(R.id.course_number);
 
         passwd = (EditText) findViewById(R.id.app_passwd);
         phone = (EditText) findViewById(R.id.phone);
-        registerbt = (Button) findViewById(R.id.res_bt);
+        registerbt =  findViewById(R.id.res_bt);
         TelephonyManager telephonyManager = (TelephonyManager) MApplication.getContext().getSystemService(MApplication.getContext().TELEPHONY_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -91,7 +94,7 @@ public class ImportActivity extends AppCompatActivity {
         }
          imei = telephonyManager.getDeviceId();
 
-        phoneimeiTextView.setText(imei);
+        phoneimeiTextView.setRightString(imei);
 
         progressDialog=new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -257,12 +260,12 @@ public class ImportActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    useridTextView.setText(userid);
-                    nameTextView.setText(name);
-                    collegeTextView.setText(college);
-                    marjorTextView.setText(marjor);
-                    classesTextView.setText(classes);
-                    coursenumberTextView.setText(len+"");
+                    useridTextView.setRightString(userid);
+                    nameTextView.setRightString(name);
+                    collegeTextView.setRightString(college);
+                    marjorTextView.setRightString(marjor);
+                    classesTextView.setRightString(classes);
+                    coursenumberTextView.setRightString(len+"");
 
                     LinearLayout ll= (LinearLayout) findViewById(R.id.course_list);
 

@@ -6,26 +6,29 @@
     <TextView
         android:id="@+id/cnametext"
         android:layout_weight="1"
-        android:text="网络工程"
-        android:layout_width="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/title"
         android:layout_weight="1"
+        android:gravity="center"
         android:maxEms="6"
-        android:text=""
+        android:textSize="18sp"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/grade"
         android:layout_weight="1"
-        android:text="8分"
-        android:gravity="right"
-        android:layout_width="wrap_content"
+
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

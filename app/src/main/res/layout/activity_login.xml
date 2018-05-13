@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
     tools:context="cn.edu.glut.glutqiandao.LoginActivity">
 
     <!-- Login progress -->
@@ -66,36 +67,68 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <CheckBox
-                android:id="@+id/rememberpasswd"
-                android:text="记住密码"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/rememberpasswd"
+                    android:text="记住密码"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/autologin"
+                    android:text="自动登录"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+android:orientation="horizontal"
     >
 
-            <Button
-                android:id="@+id/register_button"
-                style="?android:textAppearanceSmall"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
-                android:textStyle="bold" />
-            <Button
-                android:id="@+id/sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in_short"
-                android:textStyle="bold" />
+    <com.allen.library.SuperButton
+        android:id="@+id/register_button"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        android:text="注册"
+        stv:sUseSelector="true"
+        stv:sCornersRadius="10dp"
+        stv:sSelectorNormalColor="@color/locatebt"
+        stv:sStrokeWidth="0.2dp"
+        stv:sSelectorPressedColor="@color/grgray"
+
+        />
+
+    <com.allen.library.SuperButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:text="登录"
+        stv:sUseSelector="true"
+        stv:sCornersRadius="10dp"
+        stv:sSelectorNormalColor="@color/loginbt"
+        stv:sStrokeWidth="0.2dp"
+        stv:sSelectorPressedColor="@color/grgray"
+
+        />
+
+
+
 </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

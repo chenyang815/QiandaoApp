@@ -24,4 +24,5 @@
     <string name="title_activity_answer_quiz">AnswerQuizActivity</string>
     <string name="title_activity_display">DisplayActivity</string>
     <string name="selecttip">请选择</string>
+    <string name="textviewitemsize">18sp</string>
 </resources>

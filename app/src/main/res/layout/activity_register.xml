@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
     tools:context="cn.edu.glut.glutqiandao.RegisterActivity">
 
     <LinearLayout
@@ -14,7 +19,8 @@
         >
         <TextView
             android:layout_gravity="left"
-            android:text="\u3000\u3000请使用教务处帐号登录"
+            android:text="请使用教务处帐号登录"
+            android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -25,16 +31,19 @@
             >
             <TextView
 
-                android:text="帐\u3000号:"
-                android:layout_width="wrap_content"
+                android:text="帐号:"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
         <EditText
 
             android:id="@+id/user"
-
+            android:layout_weight="4"
             android:layout_height="wrap_content"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
 
             />
         </LinearLayout>
@@ -46,14 +55,17 @@
             >
 
             <TextView
-
-                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="密\u3000码:" />
+                android:gravity="right"
+                android:text="密码:" />
         <EditText
             android:id="@+id/passwd"
             android:inputType="textPassword"
-            android:layout_width="200dp"
+            android:layout_weight="4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
         </LinearLayout>
@@ -66,12 +78,16 @@
 
             <TextView
                 android:text="验证码:"
-                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/code"
-            android:layout_width="200dp"
+            android:layout_weight="4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
         </LinearLayout>
 
@@ -79,10 +95,23 @@
             android:id="@+id/codepic"
             android:layout_width="100dp"
             android:layout_height="40dp" />
-        <Button
+        <com.allen.library.SuperButton
             android:id="@+id/login2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
             android:text="登录"
+            stv:sUseSelector="true"
+            stv:sCornersRadius="10dp"
+            stv:sSelectorNormalColor="@color/loginbt"
+            stv:sStrokeWidth="0.2dp"
+            stv:sSelectorPressedColor="@color/grgray"
+            />
+
+        <TextView
+
+            android:text="\n\n\n\n说明：\n帐号仅作登录教务处使用，不保存密码，请放心使用"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

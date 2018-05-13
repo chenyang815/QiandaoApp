@@ -50,9 +50,9 @@ public class QueryFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    static String link1="http://192.168.31.135:8080/getTodayAttendaceItems";
-    static String link2="http://192.168.31.135:8080/getTodayAnswerItems";
-    static String link3="http://192.168.31.135:8080/getCourseItemsByStu";
+    static String link1="http://tomcat.ishare20.cn:8080/getTodayAttendaceItems";
+    static String link2="http://tomcat.ishare20.cn:8080/getTodayAnswerItems";
+    static String link3="http://tomcat.ishare20.cn:8080/getCourseItemsByStu";
     PtrClassicFrameLayout ptrClassicFrameLayout;
     private OnFragmentInteractionListener mListener;
     private AttendanceItemAdapter attendanceItemAdapter;

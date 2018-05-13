@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -111,7 +112,21 @@ public class MainActivity extends AppCompatActivity implements QianDaoFragment.O
 
     }
 
-@Override
+    //点击返回桌面
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 
@@ -124,12 +139,13 @@ public class MainActivity extends AppCompatActivity implements QianDaoFragment.O
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//显示解析
+                    //Toast.makeText(MainActivity.this, result, Toast.LENGTH_SHORT).show();//显示解析
                     JsonParser parser=new JsonParser();
                     JsonElement element=parser.parse(result);
-
-
                     JsonObject jsonObj = element.getAsJsonObject();
+                    if (jsonObj.get("type")!=null){
+
+
                     String type=jsonObj.get("type").getAsString();
                     //0为考勤,1为答题,2为问卷
                     if (type.equals("0")){
@@ -150,7 +166,10 @@ public class MainActivity extends AppCompatActivity implements QianDaoFragment.O
                         intent.putExtra("data", result);
                         startActivity(intent);
                     }
-
+                    }
+                    else {
+                        //跳转显示内容的Activity
+                    }
 
 
 

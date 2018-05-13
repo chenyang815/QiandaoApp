@@ -42,7 +42,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
-
+//签到
 public class SignActivity extends AppCompatActivity {
 
     SuperTextView teacher_textView, course_textView, date_textView,
@@ -121,7 +121,7 @@ public class SignActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 System.out.println("坐标是"+coordinate);
-                if (!coordinate.equals("0.0-0.0")){
+                if (coordinate!=null && !coordinate.equals("0.0-0.0")){
                      if (mFingerprintIdentify.isFingerprintEnable()) {
                          Toast.makeText(SignActivity.this, "开始指纹验证", Toast.LENGTH_SHORT).show();
                          View view = getLayoutInflater().inflate(R.layout.identifylayout, null);
@@ -182,7 +182,7 @@ public class SignActivity extends AppCompatActivity {
         course_textView.setCenterString(code.getCname());
         date_textView.setCenterString(code.getSigndate());
         class_textView.setCenterString(code.getClassroom());
-        section_textView.setCenterString(code.getSection()+"节");
+        section_textView.setCenterString(Util.getSectionText(code.getSection()));
 
         mLocationClient = new AMapLocationClient(getApplicationContext());
 

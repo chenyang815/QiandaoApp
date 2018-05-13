@@ -30,6 +30,8 @@
     <color name="header">#58567D</color>
     <color name="grgray">#686868</color>
     <color name="locatebt">#46cced</color>
+    <color name="loginbt">#1aba5d</color>
     <color name="btnqq">#29A176</color>
+    <color name="exitbtn">#f2274c</color>
 
 </resources>

@@ -6,105 +6,130 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.DisplayActivity"
-    tools:layout_editor_absoluteY="81dp">
+    >
 
-    <Spinner
-        android:id="@+id/select"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
-        android:layout_width="146dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="25dp"
-        android:background="@color/bg_color"
-        android:prompt="@string/selecttip"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toTopOf="@+id/timesection"
-        app:layout_constraintEnd_toStartOf="@+id/timebutton"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.516">
-
-    </Spinner>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+       >
 
 
-    <com.allen.library.SuperButton
-        android:id="@+id/timebutton"
-        android:layout_width="136dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginRight="39dp"
-        android:layout_marginTop="5dp"
-        android:text="点击选择时间范围"
-        app:layout_constraintBottom_toTopOf="@+id/timesection"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/select"
-        app:layout_constraintTop_toTopOf="parent"
-        stv:sCornersRadius="10dp"
-        stv:sSelectorNormalColor="@color/bg_color"
-        stv:sSelectorPressedColor="@color/grgray"
-        stv:sStrokeWidth="0.2dp"
-        stv:sUseSelector="true" />
+        <Spinner
 
-    <com.allen.library.SuperTextView
-        android:id="@+id/timesection"
-        android:layout_width="168dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="405dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timebutton"
-        stv:sCenterTextString="2018-4-11到5-12" />
+            android:id="@+id/select"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:prompt="@string/selecttip"
+            android:spinnerMode="dropdown"
 
-    <com.allen.library.SuperButton
-        android:id="@+id/querybtn"
-        android:layout_width="136dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="6dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="查询"
-        app:layout_constraintBottom_toTopOf="@+id/itemframe"
-        app:layout_constraintStart_toEndOf="@+id/timesection"
-        app:layout_constraintTop_toBottomOf="@+id/timebutton"
-        stv:sCornersRadius="10dp"
-        stv:sSelectorNormalColor="@color/bg_color"
-        stv:sSelectorPressedColor="@color/grgray"
-        stv:sStrokeWidth="0.2dp"
-        stv:sUseSelector="true" />
+            >
+
+        </Spinner>
+
+        <com.allen.library.SuperButton
+            android:id="@+id/timebutton"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="点击选择日期范围"
+            stv:sCornersRadius="10dp"
+            stv:sSelectorNormalColor="@color/bg_color"
+            stv:sSelectorPressedColor="@color/grgray"
+            stv:sStrokeWidth="0.2dp"
+            stv:sUseSelector="true"
+            />
+        <com.allen.library.SuperButton
+            android:id="@+id/querybtn"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="查询"
+            stv:sCornersRadius="10dp"
+            stv:sSelectorNormalColor="@color/bg_color"
+            stv:sSelectorPressedColor="@color/grgray"
+            stv:sStrokeWidth="0.2dp"
+            stv:sUseSelector="true" />
+    </LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/timesection"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            stv:sCenterTextString="请选择日期范围"
+            />
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/datetextview"
+                android:layout_weight="1"
+                android:text="日期"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/center_textview"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="节数"
+                android:textSize="18sp"
+                android:ellipsize="marquee"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/right_textview"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="状态"
+                android:textSize="18sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
 
 
     <com.chanven.lib.cptr.PtrClassicFrameLayout xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/itemframe"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        cube_ptr:layout_constraintBottom_toBottomOf="parent"
-        cube_ptr:layout_constraintEnd_toEndOf="parent"
-        cube_ptr:layout_constraintHorizontal_bias="0.0"
-        cube_ptr:layout_constraintStart_toStartOf="parent"
-        cube_ptr:layout_constraintTop_toBottomOf="@+id/querybtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         cube_ptr:ptr_duration_to_close="200"
         cube_ptr:ptr_duration_to_close_header="700"
         cube_ptr:ptr_keep_header_when_refresh="true"
         cube_ptr:ptr_pull_to_fresh="false"
         cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
-        cube_ptr:ptr_resistance="1.8">
+        cube_ptr:ptr_resistance="1.8"
+        tools:layout_editor_absoluteY="241dp">
 
         <ListView
             android:id="@+id/items_list_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
     </com.chanven.lib.cptr.PtrClassicFrameLayout>
 
-
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

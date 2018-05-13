@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.allen.library.SuperButton;
 import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.ReadContext;
@@ -41,47 +43,78 @@ import okhttp3.Response;
 public class LoginActivity extends AppCompatActivity  {
 
     private CheckBox rememberpasswd;
+    private CheckBox autologin;
     private EditText mStusid;
     private EditText mPasswordView;
-    private Button registerbt,loginbt;
+    private SuperButton registerbt,loginbt;
     private static boolean state;
     private static Handler handler = new Handler();
-    private static String url="http://192.168.31.135:8080/slogin";
-    private static String url2="http://192.168.31.135:8080/getStudentInfoAction";
+    private static String url="http://tomcat.ishare20.cn:8080/slogin";
+    private static String url2="http://tomcat.ishare20.cn:8080/getStudentInfoAction";
     static ProgressDialog progressDialog=null;
 
-    private boolean isremeberpasswd;
+    private boolean iSremeberpasswd;
+    private boolean iSautologin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mStusid=(EditText)findViewById(R.id.stusid);
         mPasswordView = (EditText) findViewById(R.id.password);
-        registerbt=(Button)findViewById(R.id.register_button);
-        loginbt= (Button) findViewById(R.id.sign_in_button);
-
+        registerbt=findViewById(R.id.register_button);
+        loginbt=findViewById(R.id.sign_in_button);
+        autologin=findViewById(R.id.autologin);
         rememberpasswd= (CheckBox) findViewById(R.id.rememberpasswd);
 
         rememberpasswd.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    isremeberpasswd=true;
+                    iSremeberpasswd=true;
                 }else {
-                    isremeberpasswd=false;
+                    iSremeberpasswd=false;
+                }
+            }
+        });
+
+        autologin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    iSautologin=true;
+                }else {
+                    iSautologin=false;
                 }
             }
         });
 
         if (getSharedPreferences("data",MODE_PRIVATE)!=null){
 
-            //自动登录
+
 
             SharedPreferences sp=getSharedPreferences("data",MODE_PRIVATE);
-            mStusid.setText(sp.getString("sid",""));
-            mPasswordView.setText(sp.getString("spasswd",""));
-            MApplication.setSid(sp.getString("sid",""));
-            new Thread(new LoginThread()).start();
+            //如果上次记住密码
+            if(sp.getString("isremeberpasswd","false").equals("true")){
+                rememberpasswd.setChecked(true);
+                mStusid.setText(sp.getString("sid",""));
+                mPasswordView.setText(sp.getString("spasswd",""));
+                MApplication.setSid(sp.getString("sid",""));
+
+
+            }
+            Intent intent=getIntent();
+            if (intent.getStringExtra("exit")==null){
+                //如果上次选自动登录
+                if (sp.getString("isautologin","false").equals("true")){
+                    autologin.setChecked(true);
+                    new Thread(new LoginThread()).start();
+                }
+
+            }
+
+
+
 
         }
 
@@ -100,12 +133,17 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                if (isremeberpasswd){
+                if (iSremeberpasswd){
                     SharedPreferences sp=getSharedPreferences("data",MODE_PRIVATE);
                     SharedPreferences.Editor editor=sp.edit();
                     editor.putString("sid",mStusid.getText().toString());
                     editor.putString("spasswd",mPasswordView.getText().toString());
+                    editor.putString("isremeberpasswd","true");
+                    if(iSautologin){
+                        editor.putString("isautologin","true");
+                    }
                     MApplication.setSid(mStusid.getText().toString());
+
                     editor.commit();//保存密码
                 }
 
@@ -116,6 +154,21 @@ public class LoginActivity extends AppCompatActivity  {
             }
         });
 
+    }
+
+
+    //点击返回桌面
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 public class LoginThread extends Thread implements Runnable{
