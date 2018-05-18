@@ -73,8 +73,12 @@
             android:name=".quiz.AnswerQuizActivity"
             android:label="@string/title_activity_answer_quiz"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".questionnaire.AnswerQuestionnaireActivity" />
-        <activity android:name=".activity.DisplayActivity"></activity>
+        <activity android:name=".questionnaire.AnswerQuestionnaireActivity"
+            android:label="@string/qunatitle"
+            />
+        <activity android:name=".activity.DisplayActivity"
+            android:label="@string/dataquery"
+            ></activity>
     </application>
 
 </manifest>

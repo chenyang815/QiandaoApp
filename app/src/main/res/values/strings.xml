@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GlutQianDao</string>
+    <string name="app_name">桂工互动</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">请输入学号</string>
@@ -13,7 +13,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_main">桂工师生互动系统</string>
+    <string name="title_activity_main">桂工互动</string>
     <string name="title_home">扫码</string>
     <string name="title_dashboard">查询</string>
     <string name="title_notifications">个人信息</string>
@@ -21,8 +21,10 @@
     <string name="aa">注册信息</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_answer_quiz">AnswerQuizActivity</string>
+    <string name="title_activity_answer_quiz">扫码竞答</string>
     <string name="title_activity_display">DisplayActivity</string>
     <string name="selecttip">请选择</string>
     <string name="textviewitemsize">18sp</string>
+    <string name="qunatitle">问卷调查</string>
+    <string name="dataquery">数据查询</string>
 </resources>

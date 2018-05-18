@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.allen.library.SuperButton;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 
 import cn.edu.glut.glutqiandao.location.LocationTestActivity;
@@ -33,8 +34,8 @@ public class QianDaoFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button qiandaobt;
-    private Button locatebt;
+    private SuperButton qiandaobt;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -76,8 +77,8 @@ public class QianDaoFragment extends Fragment {
 
 
         View view=inflater.inflate(R.layout.fragment_qian_dao, container, false);
-        qiandaobt= (Button) view.findViewById(R.id.qiandaobt);
-        locatebt= (Button) view.findViewById(R.id.location);
+        qiandaobt=  view.findViewById(R.id.qiandaobt);
+
 
         qiandaobt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,15 +91,6 @@ public class QianDaoFragment extends Fragment {
         });
 
 
-        locatebt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity mainActivity=(MainActivity)getActivity();
-                Intent intent=new Intent(mainActivity.getApplication(), LocationTestActivity.class);
-                mainActivity.startActivity(intent);
-
-            }
-        });
 
         return view;
     }

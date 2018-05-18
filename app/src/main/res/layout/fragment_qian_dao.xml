@@ -2,20 +2,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
     tools:context="cn.edu.glut.glutqiandao.QianDaoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:text="扫码"
-        android:id="@+id/qiandaobt"
-        android:layout_gravity="center"
-        android:layout_width="113dp"
-        android:layout_height="59dp" />
 
-    <Button
-        android:id="@+id/location"
-        android:text="定位测试"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <com.allen.library.SuperButton
+        android:id="@+id/qiandaobt"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:text="扫码"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        stv:sUseSelector="true"
+        stv:sCornersRadius="20dp"
+        stv:sSelectorNormalColor="@color/sccanbtn"
+        stv:sStrokeWidth="0.2dp"
+        stv:sSelectorPressedColor="@color/grgray"
+        />
 
 </FrameLayout>

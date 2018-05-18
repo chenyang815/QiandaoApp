@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.allen.library.SuperButton;
+import com.allen.library.SuperTextView;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -31,22 +33,22 @@ import okhttp3.Response;
 
 public class AnswerQuizActivity extends AppCompatActivity {
 
-    private TextView titleTextview,courseTextview;
-    private TextView answerBt;
+    private SuperTextView titleTextview,courseTextview;
+    private SuperButton answerBt;
     private QuizCode quizCode;
     private String datastr;
     private boolean isSameAnswer;
     private static Handler handler = new Handler();
-    static String querylink="http://192.168.31.135:8080/queryaid";
+    //static String querylink="http://tomcat.ishare20.cn:8080/queryaid";
     String qid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer_quiz);
 
-        titleTextview = (TextView) findViewById(R.id.title);
-        courseTextview= (TextView) findViewById(R.id.course);
-        answerBt= (TextView) findViewById(R.id.answerbt);
+        titleTextview =  findViewById(R.id.title);
+        courseTextview=  findViewById(R.id.course);
+        answerBt=  findViewById(R.id.answerbt);
 
 
         Intent intent = getIntent();
@@ -54,8 +56,8 @@ public class AnswerQuizActivity extends AppCompatActivity {
         Gson gson = new Gson();
         quizCode = gson.fromJson(data, QuizCode.class);
 
-        titleTextview.setText(quizCode.getTitle());
-        courseTextview.setText(quizCode.getCname());
+        titleTextview.setCenterString(quizCode.getTitle());
+        courseTextview.setCenterString(quizCode.getCname());
 
         answerBt.setOnClickListener(new View.OnClickListener() {
             @Override
